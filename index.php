@@ -18,7 +18,35 @@
         <button type="reset">Reset</button>
     </form>
     </div>
-   
+    <?php
+    function generateRandomPassword($length) {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|[]\;\',./<>?:"';
+        $password = '';
+        
+        $charsLength = strlen($chars);
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $chars[rand(0, $charsLength - 1)];
+        }
+        
+        return $password;
+    }
+
+    if (isset($_GET['passwordLength'])) {
+        $passwordLength = $_GET['passwordLength'];
+        
+        if (is_numeric($passwordLength) && $passwordLength > 0) {
+            $generatedPassword = generateRandomPassword($passwordLength);
+            echo "<p>La password generata è: <strong>$generatedPassword</strong></p>";
+        } else {
+            echo "<p>Inserisci una lunghezza valida per la password.</p>";
+        }
+    } else {
+        // Se non è stata fornita una lunghezza, non mostrare la password
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            echo "<p>Inserisci una lunghezza per generare la password.</p>";
+        }
+    }
+    ?>
 
 </body>
 </html>
