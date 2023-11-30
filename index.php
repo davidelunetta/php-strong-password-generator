@@ -19,17 +19,7 @@
     </form>
     </div>
     <?php
-    function generateRandomPassword($length) {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|[]\;\',./<>?:"';
-        $password = '';
-        
-        $charsLength = strlen($chars);
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $chars[rand(0, $charsLength - 1)];
-        }
-        
-        return $password;
-    }
+    include 'functions.php';
 
     if (isset($_GET['passwordLength'])) {
         $passwordLength = $_GET['passwordLength'];
